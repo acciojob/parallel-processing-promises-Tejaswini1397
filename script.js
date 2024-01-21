@@ -36,24 +36,51 @@ const images = [
 //       const promises = images.map(loadImage);
 //       return Promise.all(promises);
 //     }
-const imgLoad=(url)=>{
-	return `<img src=${url}/>`;
-}
-const all= async () =>{
-	try{
-		const gallary=await Promise.all(images.map((val)=> fetch(val.url)));
-		gallary.forEach((val)=>{
-			output.insertAdjacentHTML("beforeend",imgLoad(val.url));
+// const imgLoad=(url)=>{
+// 	return `<img src=${url}/>`;
+// }
+// const all= async () =>{
+// 	try{
+// 		const gallary=await Promise.all(images.map((val)=> fetch(val.url)));
+// 		gallary.forEach((val)=>{
+// 			output.insertAdjacentHTML("beforeend",imgLoad(val.url));
 			
-		})
-		return gallary;
-	}catch(error){
-		 return "failed to load images";
-	}
+// 		})
+// 		return gallary;
+// 	}catch(error){
+// 		 return "failed to load images";
+// 	}
 	
-}
-btn.addEventListener('click',()=>{
-	images.forEach((val)=>{
-		output.insertAdjacentHTML("beforeend",imgLoad(val.url));
-	})
+// }
+// btn.addEventListener('click',()=>{
+// 	images.forEach((val)=>{
+// 		output.insertAdjacentHTML("beforeend",imgLoad(val.url));
+// 	})
+// });
+
+
+
+
+
+const imageLoad = (url) => {
+  return `<img src='${url}' />`;
+};
+
+const all = async () => {
+  try {
+    const gallery = await Promise.all(images.map((val) => fetch(val.url)));
+    gallery.forEach((val) => {
+      output.insertAdjacentHTML("beforeend", imageLoad(val.url));
+    });
+
+    return gallery;
+  } catch (err) {
+    return "failed to load images";
+  }
+};
+
+btn.addEventListener("click", () => {
+  images.forEach((val) => {
+      output.insertAdjacentHTML("beforeend", imageLoad(val.url));
+    });
 });
